@@ -16,8 +16,8 @@ function calculate(n1, operator, n2) {
       return parseFloat(n1) - parseFloat(n2)
   } else if( operator === '/') {
       return parseFloat(n1) / parseFloat(n2)
-  } else if( operator === '%') {
-      return parseFloat(n1) % parseFloat(n2)
+  } else {
+      return parseFloat(n1) * parseFloat(n2)
   }
   return String(result);
 }
