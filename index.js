@@ -10,6 +10,15 @@ function calculate(n1, operator, n2) {
   let result = 0;
   // TODO : n1과 n2를 operator에 따라 계산하는 함수를 만드세요.
   // ex) 입력값이 n1 : '1', operator : '+', n2 : '2' 인 경우, 3이 리턴됩니다.
+  if(operator === '+') {
+      return parseFloat(n1) + parseFloat(n2)
+  } else if( operator === '-') {
+      return parseFloat(n1) - parseFloat(n2)
+  } else if( operator === '/') {
+      return parseFloat(n1) / parseFloat(n2)
+  } else if( operator === '%') {
+      return parseFloat(n1) % parseFloat(n2)
+  }
   return String(result);
 }
 
@@ -27,6 +36,7 @@ buttons.addEventListener('click', function (event) {
     if (action === 'number') {
       // 그리고 버튼의 클레스가 number이면
       // 아래 코드가 작동됩니다.
+
       console.log('숫자 ' + buttonContent + ' 버튼');
     }
 
@@ -64,11 +74,30 @@ buttons.addEventListener('click', function (event) {
 
   // ! 여기서부터 Advanced Challenge & Nightmare 과제룰 풀어주세요.
   if (target.matches('button')) {
-    if (action === 'number') {}
-    if (action === 'operator') {}
+    if (action === 'number') {
+        if(display.textContent === '0' || previousKey === 'operator') {
+            display.textContent = buttonContent;
+            previousKey = 'number';
+        } else {
+            display.textContent += buttonContent;
+        }
+    }
+    if (action === 'operator') {
+        firstNum = display.textContent;
+        operatorForAdvanced = buttonContent;
+        previousKey = 'operator';
+    }
     if (action === 'decimal') {}
-    if (action === 'clear') {}
-    if (action === 'calculate') {}
+    if (action === 'clear') {
+        firstNum = undefined;
+        operatorForAdvanced = undefined;
+        previousKey = undefined;
+        previousNum = undefined;
+        display.textContent = 0;
+    }
+    if (action === 'calculate') {
+        display.textContent = calculate(firstNum, operatorForAdvanced, display.textContent);
+    }
   }
 
 });
