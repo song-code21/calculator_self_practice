@@ -97,6 +97,7 @@ buttons.addEventListener('click', function (event) {
     }
     if (action === 'calculate') {
         display.textContent = calculate(firstNum, operatorForAdvanced, display.textContent);
+        previousKey = 'calculate'
     }
   }
 
